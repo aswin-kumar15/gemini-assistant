@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Sidebar -->
+            <div class="col-md-3 bg-dark text-white p-4 sidebar">
+                <div class="mb-4">
+                    <h4 class="mb-3">
+                        <i class="bi bi-robot"></i> Gemini AI
+                    </h4>
+                    <p class="text-muted small">Powered by Google AI with real-time search</p>
+                </div>
+
+                <div class="mb-4">
+                    <button class="btn btn-primary w-100 mb-2" onclick="newChat()">
+                        <i class="bi bi-plus-circle"></i> New Chat
+                    </button>
+                    <button class="btn btn-outline-light w-100" onclick="clearHistory()">
+                        <i class="bi bi-trash"></i> Clear History
+                    </button>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-muted">Features</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Conversation Memory</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Real-Time Search</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Context Awareness</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Source Citations</li>
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-muted">Try These Queries</h6>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-sm btn-outline-light text-start" onclick="sendSample(0)">
+                            What's the current Bitcoin price?
+                        </button>
+                        <button class="btn btn-sm btn-outline-light text-start" onclick="sendSample(1)">
+                            Weather in Mumbai today
+                        </button>
+                        <button class="btn btn-sm btn-outline-light text-start" onclick="sendSample(2)">
+                            Latest news on AI
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-auto">
+                    <small class="text-muted">
+                        <i class="bi bi-info-circle"></i> Messages: <span id="messageCount">0</span>
+                    </small>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="col-md-9 d-flex flex-column chat-container">
+                <!-- Header -->
+                <div class="chat-header bg-white border-bottom p-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-chat-dots"></i> AI Assistant
+                        <span id="searchIndicator" class="badge bg-info ms-2 d-none">
+                            <i class="bi bi-search"></i> Searching...
+                        </span>
+                    </h5>
+                </div>
+
+                <!-- Messages -->
+                <div id="chatMessages" class="flex-grow-1 p-4 overflow-auto">
+                    <!-- Welcome Message -->
+                    <div class="message assistant-message">
+                        <div class="message-avatar">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                <p class="mb-2">👋 Hello! I'm your AI assistant powered by Google Gemini with real-time search capabilities.</p>
+                                <p class="mb-2">I can:</p>
+                                <ul class="mb-2">
+                                    <li>Answer questions and have conversations</li>
+                                    <li>Remember our conversation history</li>
+                                    <li>Search the web for real-time information</li>
+                                    <li>Provide up-to-date data on prices, weather, news, and more</li>
+                                </ul>
+                                <p class="mb-0">How can I help you today?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input bg-white border-top p-3">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            class="form-control" 
+                            placeholder="Type your message... (Press Enter to send)"
+                            autocomplete="off"
+                        >
+                        <button class="btn btn-primary" onclick="sendMessage()">
+                            <i class="bi bi-send"></i> Send
+                        </button>
+                    </div>
+                    <small class="text-muted">
+                        <i class="bi bi-lightbulb"></i> Tip: Ask about current events, prices, or weather for real-time results
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
