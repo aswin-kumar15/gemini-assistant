@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify, session
 from config import Config
 from services.gemini_service import GeminiService
@@ -124,12 +125,12 @@ def health():
         'active_conversations': len(conversations)
     })
 
-if __name__ == '__main__':
-    print("\n" + "="*50)
-    print("Gemini AI Assistant with Real-Time Search")
-    print("="*50)
-    print(f"Server running on http://localhost:5002")
-    print(f"Environment: {Config.FLASK_ENV}")
-    print("="*50 + "\n")
-    
-    app.run(debug=Config.DEBUG, port=5002)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+
+    print("\n" + "=" * 50)
+    print("Flask app starting")
+    print(f"Listening on 0.0.0.0:{port}")
+    print("=" * 50 + "\n")
+
+    app.run(host="0.0.0.0", port=port)
