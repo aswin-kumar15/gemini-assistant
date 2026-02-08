@@ -35,8 +35,6 @@ pip install -r requirements.txt
 python app.py
 ```
 
-The server runs on `http://localhost:5002`.
-
 **Environment Variables**
 Create a `.env` file in the project root:
 
